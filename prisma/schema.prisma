@@ -1,0 +1,91 @@
+// Add your schema.prisma
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mongodb"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model shops {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  description     String
+  shopProductType String
+  avatar          String
+  rating          Float    @default(0)
+  totalSales      Int      @default(0)
+  allProducts     Int      @default(0)
+  // createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  userId          String   @unique
+}
+
+
+model Images {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  public_id String
+  url       String
+  promptId  String?  @db.ObjectId
+  Prompts   Prompts? @relation(fields: [promptId], references: [id])
+}
+
+model reviews {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  promptId  String   @db.ObjectId
+  userId    String
+  rating    Float
+  comment   String
+  createdAt DateTime @default(now())
+  prompts   Prompts  @relation(fields: [promptId], references: [id])
+}
+
+model PromptFiles {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  public_id String
+  url       String
+  promptsId String?  @db.ObjectId
+  Prompts   Prompts? @relation(fields: [promptsId], references: [id])
+}
+
+model Orders {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId         String
+  Prompts        Prompts? @relation(fields: [promptsId], references: [id])
+  promptsId      String?  @db.ObjectId
+  payment_method String
+  payment_id     String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+enum promptStatus {
+  Pending
+  Live
+  Declined
+}
+
+model Prompts {
+  id               String        @id @default(auto()) @map("_id") @db.ObjectId
+  name             String
+  shortDescription String
+  description      String
+  images           Images[]      
+  estimatedPrice   Float?
+  price            Float
+  category         String
+  tags             String
+  rating           Float         @default(0)
+  reviews          reviews[]
+  promptUrl        PromptFiles[]
+  sellerId         String
+  orders           Orders[]
+  status           promptStatus  @default(Pending)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+}
+
