@@ -13,7 +13,7 @@ const Page = async () => {
         <ShopSidebar active={4} />
       </div>
       <div className="md:w-[80%] 2xl:w-[83%] p-5">
-        <AllInvoices invoices={data} />
+        <AllInvoices invoices={invoices} />
       </div>
     </div>
   );
