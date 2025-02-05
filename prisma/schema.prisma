@@ -23,6 +23,7 @@ model shops {
   // createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
   userId          String   @unique
+  withdraws        withdraws[]
 }
 
 
@@ -89,3 +90,12 @@ model Prompts {
   updatedAt        DateTime      @updatedAt
 }
 
+model withdraws {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  sellerId  String   @db.ObjectId
+  shop      shops    @relation(fields: [sellerId], references: [id])
+  amount    Float
+  status    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
