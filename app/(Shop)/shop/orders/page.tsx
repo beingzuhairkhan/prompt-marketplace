@@ -1,7 +1,4 @@
-
-
 import ShopSlider from "@/components/Shop/ShopSlider"
-// import ShopAllOrders from '../../../../components/Shop/ShopAllOrders'
 import ShopAllOrders from '@/components/Shop/ShopAllOrders'
 import { getShopOrders } from "@/actions/orders/getShopOrders"
 import { getUser } from "@/actions/user/getUser"
@@ -21,10 +18,6 @@ const Page = async()=>{
           <div className="md:w-[80%] 2xl:w-[83%] p-5 " >
            <ShopAllOrders isDashboard={false} ordersData={ordersData} sellerId={seller} />
           </div>
-            
-
-
-
         </div>
     )
 }
