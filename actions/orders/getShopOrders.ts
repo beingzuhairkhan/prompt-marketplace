@@ -20,7 +20,7 @@ export const getShopOrders = async ({ sellerId }: { sellerId: string }) => {
 
         for (const order of orders) {
             const userId = order?.userId;
-            console.log("IUser", userId);
+           // console.log("IUser", userId);
             
             if (userId) {
                 const user = await clerkClient.users.getUser(userId);
