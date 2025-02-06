@@ -6,7 +6,7 @@ import { format } from "timeago.js";
 
 const ShopAllOrders = ({ isDashboard,ordersData, sellerId }: { isDashboard: boolean,ordersData:any ; sellerId:any}) => {
  //  console.log("sellerId page" , sellerId)
-  // console.log("ordersData page" , ordersData)
+ //  console.log("ordersData page" , ordersData[0]?.user?.email )
   const columns = [
     { field: "id", headerName: "ID", flex: 0.3 },
     { field: "name", headerName: "Name", flex: isDashboard ? 0.6 : 0.5 },
@@ -28,7 +28,7 @@ const ShopAllOrders = ({ isDashboard,ordersData, sellerId }: { isDashboard: bool
               return (
                 <a href={`mailto:${params.row.email}`}>
                   <AiOutlineMail
-                    className="dark:text-white text-black"
+                    className="dark:text-white text-white"
                     size={20}
                   />
                 </a>
@@ -42,11 +42,11 @@ const ShopAllOrders = ({ isDashboard,ordersData, sellerId }: { isDashboard: bool
 
   ordersData?.forEach((order: any) => {
  
-
+  console.log("orders data" , order?.user?.email)
     rows.push({
       id: order?.id,
       name: order?.user?.firstName || "N/A", // Seller's name
-      email: order?.user?.emailAddresses?.[0]?.emailAddress || "N/A", // Seller's email
+      email: order?.user?.email  || "N/A", // Seller's email
       title: order?.Prompts?.name || "N/A",
       price: `RS ${order?.Prompts?.price || 0}`,
       created_at: format(order?.createdAt),

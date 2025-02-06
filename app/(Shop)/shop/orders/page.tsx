@@ -7,10 +7,10 @@ const Page = async()=>{
     const sellerId = await getUser()
 //    console.log("sellerId" ,sellerId)
    const seller = sellerId?.user
-  console.log("sellerId" ,seller)
+//  console.log("sellerId" ,seller)
 
      const ordersData = await getShopOrders({sellerId:sellerId?.user?.id!})
-     console.log("ordersData" ,ordersData)
+    // console.log("ordersData" ,ordersData)
     return(
         <div className="flex w-full" >
             <div className="h-screen flex p-2 bg-[#111c42] md:w-[20%] 2xl:w-[17%] ">
