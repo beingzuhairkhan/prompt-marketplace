@@ -5,6 +5,8 @@ import Header from "@/components/Layout/Header";
 import {useState , useEffect} from  "react" ;
 import { Divider } from "@nextui-org/react";
  const Page = ()=> {
+  const user = undefined; 
+  const isSellerExists = false; 
   const testimonials = [
     {
       quote:
@@ -40,7 +42,7 @@ import { Divider } from "@nextui-org/react";
   return(
     <div>
       <div>
-      <Header activeItem={4}  />
+      <Header activeItem={4} user={user} isSellerExists={isSellerExists } />
       </div>
       <AnimatedTestimonials testimonials={testimonials} />
       <div>

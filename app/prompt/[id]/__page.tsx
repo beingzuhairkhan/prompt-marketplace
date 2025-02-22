@@ -58,7 +58,7 @@ const PromptDetailPage =  ({user , isSellerExists , promptData , relatedprompt ,
 
             </div>
             <div className="w-[95%] md:[80%] xl:[85%] 2xl:[80%] m-auto ">
-                <PromptDetails promptData={promptData} relatedprompt={relatedprompt} stripePromise={stripePromise} clientSecret={clientSecret} />
+                <PromptDetails promptData={promptData} relatedprompt={relatedprompt} stripePromise={stripePromise} clientSecret={clientSecret ?? ''} />
                 <Divider className="bg-[#ffffff14] mt-5  "  />
                 <Footer/>
             </div>

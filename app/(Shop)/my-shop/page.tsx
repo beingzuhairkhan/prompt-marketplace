@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 import ShopSlider from "@/components/Shop/ShopSlider"
-type Props = {}
+
 
 const Page = () => {
   return (

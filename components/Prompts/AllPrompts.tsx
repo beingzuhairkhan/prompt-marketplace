@@ -67,17 +67,17 @@ const AllPrompts = () => {
                     sx={{
                         height: 500,
                         width: '100%',
-                        border: '2px solid black', // Add white border
-                        borderRadius: '8px', // Optional: Rounded corners
-                        overflow: 'hidden', // Ensures DataGrid stays inside the box
+                        border: '2px solid black', 
+                        borderRadius: '8px', 
+                        overflow: 'hidden',
                     }}
                 >
                     <DataGrid
                         rows={rows}
                         columns={columns}
-                        pageSize={10}
-                        rowsPerPageOptions={[5, 10, 20]}
-                        disableSelectionOnClick
+                        paginationModel={{ pageSize: 5, page: 0 }} 
+                    pageSizeOptions={[5, 10]} 
+                      
                         sx={{
                             '& .MuiDataGrid-columnHeaders': {
                                 backgroundColor: 'black', // Black header background

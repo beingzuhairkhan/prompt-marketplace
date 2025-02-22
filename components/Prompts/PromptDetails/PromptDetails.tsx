@@ -12,7 +12,7 @@ type props = {
     clientSecret:string 
 }
 const PromptDetails = ({promptData , relatedprompt , stripePromise , clientSecret}:props) => {
-    const [prompts, setPrompts] = useState();
+    const [prompts, setPrompts] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const fetchPromptData = async () => {
         setLoading(true);

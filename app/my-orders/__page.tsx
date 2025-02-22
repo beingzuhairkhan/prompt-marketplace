@@ -12,7 +12,7 @@ import toast from 'react-hot-toast';
 import type { User } from '@clerk/nextjs/server';
 import Header from '@/components/Layout/Header';
 
-const UserAllOrders = ({ data , user , isSellerExists}: { data: any ; user:User | undefined ;   isSellerExists: boolean | undefined; }) => {
+const UserAllOrders = ({ data , user , isSellerExists}: { data: any ; user:User | undefined ;   isSellerExists: boolean; }) => {
     const [open, setOpen] = useState(false);
     const [promptId, setPromptId] = useState("");
     const [rating, setRating] = useState(0);
@@ -125,9 +125,9 @@ const UserAllOrders = ({ data , user , isSellerExists}: { data: any ; user:User 
                     rows={rows}
                     columns={columns}
                     autoHeight
-                    pageSize={5}
-                    rowsPerPageOptions={[5, 10]}
-                    disableSelectionOnClick
+                    paginationModel={{ pageSize: 5, page: 0 }}
+                    pageSizeOptions={[5, 10]} 
+              
                 />
             </Box>
 

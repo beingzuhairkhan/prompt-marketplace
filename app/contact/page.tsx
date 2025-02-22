@@ -6,19 +6,23 @@ import Header from "@/components/Layout/Header";
 import { Divider } from "@nextui-org/react";
 
 const Page = () => {
-  const form = useRef();
+  const user = undefined; 
+  const isSellerExists = false; 
+  const form = useRef<HTMLFormElement | null>(null);
 
-  const sendEmail = (e) => {
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     emailjs
-      .sendForm('service_vmfu879', 'template_d5enc98', form.current, 'mQQaS7Y8zQH67Di1P')
-        e.target.reset();
+      .sendForm('service_vmfu879', 'template_d5enc98', form.current as HTMLFormElement, 'mQQaS7Y8zQH67Di1P')
+      .then(() => {
+        form.current?.reset(); // Reset form only if it's not null
+      })
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-900 text-white ">
-      <Header activeItem={3} />
+      <Header activeItem={3} user={user} isSellerExists={isSellerExists} />
       
       <div id="contact" className="flex flex-col items-center justify-center py-10 px-6">
         <div className="max-w-2xl w-full text-center">
@@ -61,7 +65,6 @@ const Page = () => {
                   name="message" 
                   id="message" 
                   placeholder="Your Message" 
-                  rows="5"
                   required
                   className="w-full mt-1 p-3 bg-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 ></textarea>

@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 
 type Testimonial = {
   quote: string;
-  name: string;
   designation: string;
   src: string;
 };
@@ -81,7 +80,7 @@ export const AnimatedTestimonials = ({
                 >
                   <Image
                     src={testimonial.src}
-                    alt={testimonial.name}
+                    alt={testimonial.src}
                     width={500}
                     height={500}
                     draggable={false}
