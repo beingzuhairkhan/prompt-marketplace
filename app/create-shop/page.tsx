@@ -6,12 +6,14 @@ import { useUser } from '@clerk/nextjs';
 import axios from 'axios';
 import { toast } from "react-hot-toast";
 import { redirect } from 'next/navigation';
-type Props = {};
-
+import Footer from "@/components/Layout/Footer";
+import Header from "@/components/Layout/Header";
+import { Divider } from "@nextui-org/react";
 const Page = () => {
   const { user } = useUser();
   const [loading, setLoading] = useState(false);
-  
+
+  const isSellerExists = false; 
   const [shopData, setShopData] = useState({
     name: "",
     description: "",
@@ -71,6 +73,10 @@ const Page = () => {
   };
 
   return (
+    <>
+        <div>
+      <Header activeItem={8} user={user as undefined} isSellerExists={isSellerExists } />
+      </div>
     <div className="w-full h-screen flex flex-col p-16">
       <div>
         <h1 className={`${styles.heading} text-center font-Monserrat`}>
@@ -128,6 +134,11 @@ const Page = () => {
         </form>
       </div>
     </div>
+    <div>
+      <Divider className="bg-[ffffff14] mt-5 " />
+      <Footer/>
+      </div>
+    </>
   );
 };
 

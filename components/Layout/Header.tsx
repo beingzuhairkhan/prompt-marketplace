@@ -10,7 +10,6 @@ import { User } from '@clerk/nextjs/server';
 import DropDown from './DropDown';
 import Navigation from './Navigation';
 import { RxCross1 } from 'react-icons/rx';
-import { UserResource } from '@clerk/types';
 
 type Props = {
   activeItem: number;
@@ -107,11 +106,24 @@ const Header = ({ activeItem, isSellerExists }: Props) => {
             <span className="text-[#00BFFF]">Prompt</span>Bay
           </h1>
         </Link>
-
+     <div className="flex gap-4 items-center" >
+     {user ? (
+            <DropDown
+               user={user as unknown as User}
+              setOpen={setOpen}
+              handleProfile={handleProfile}
+              isSellerExists={isSellerExists}
+            />
+          ) : (
+            <Link href="/sign-up">
+              <CgProfile className="text-[25px] cursor-pointer" />
+            </Link>
+          )}
         {/* Hamburger Menu */}
-        <FaBars className="text-2xl cursor-pointer" onClick={() => setOpen((prev) => !prev)} />
+        <FaBars className="text-2xl cursor-pointer mt-2" onClick={() => setOpen((prev) => !prev)} />
 
         {/* Mobile Menu */}
+       
         {open && (
           <div
             className="fixed top-0 left-0 w-full flex flex-col space-y-4  h-screen z-[99999] bg-black/50"
@@ -137,6 +149,7 @@ const Header = ({ activeItem, isSellerExists }: Props) => {
             </div>
           </div>
         )}
+        </div>
       </div>
     </div>
   );
